@@ -1,24 +1,20 @@
-using Steeltoe.Common;
-using Microsoft.AspNetCore.HttpOverrides;
-using Steeltoe.Extensions.Configuration.CloudFoundry;
-using Steeltoe.Security.Authentication.CloudFoundry;
+using Steeltoe.Configuration.CloudFoundry;
+using Steeltoe.Configuration.CloudFoundry.ServiceBindings;
+using Steeltoe.Security.Authentication.JwtBearer;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.AddCloudFoundryConfiguration();
+builder.Configuration.AddCloudFoundryServiceBindings();
+
 // Add services to the container.
 
 builder.Services.AddAuthentication()
-    .AddCloudFoundryJwtBearer(builder.Configuration);
+    .AddJwtBearer().ConfigureJwtBearerForCloudFoundry();
 builder.Services.AddAuthorizationBuilder()
     .AddPolicy("sampleapi.read", policy => policy.RequireClaim("scope", "sampleapi.read"));
 
 var app = builder.Build();
-
-app.UseForwardedHeaders(new ForwardedHeadersOptions
-{
-    ForwardedHeaders = ForwardedHeaders.XForwardedProto
-});
 
 // Configure the HTTP request pipeline.
 

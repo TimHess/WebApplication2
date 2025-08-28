@@ -6,12 +6,9 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="Steeltoe.Extensions.Configuration.CloudFoundryCore" Version="3.*" />
-		<!--<PackageReference Include="Steeltoe.Security.Authentication.CloudFoundryCore" Version="3.*" />-->
-	</ItemGroup>
-
-	<ItemGroup>
-		<ProjectReference Include="..\..\Steeltoe\src\Security\src\Authentication.CloudFoundryCore\Steeltoe.Security.Authentication.CloudFoundryCore.csproj" />
+		<PackageReference Include="Steeltoe.Configuration.CloudFoundry" Version="4.*-main-*" />
+		<PackageReference Include="Steeltoe.Security.Authentication.JwtBearer" Version="4.*-main-*" />
+		<PackageReference Include="Steeltoe.Security.Authorization.Certificate" Version="4.*-main-*" />
 	</ItemGroup>
 
 </Project>
